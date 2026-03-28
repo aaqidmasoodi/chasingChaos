@@ -6,6 +6,7 @@ import { use } from "react";
 import Link from "next/link";
 import EditableText from "@/components/EditableText";
 import EditableList from "@/components/EditableList";
+import LoadingSpinner from "@/components/LoadingSpinner";
 import { showToast } from "@/components/Toast";
 
 export default function EpisodeDetailPage({ params }) {
@@ -144,7 +145,7 @@ export default function EpisodeDetailPage({ params }) {
   if (loading) {
     return (
       <div className="page-container">
-        <p style={{ color: "var(--text-tertiary)" }}>Loading...</p>
+        <LoadingSpinner />
       </div>
     );
   }

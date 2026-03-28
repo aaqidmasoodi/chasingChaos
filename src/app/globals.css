@@ -1135,3 +1135,54 @@ h1, h2, h3, h4, h5, h6 {
   .episodes-timeline::before { left: 14px; }
   .episode-card::before { left: -34px; }
 }
+
+/* ============================================
+   LOADING & FOOTER
+   ============================================ */
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  min-height: 250px;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--text-accent);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-logo {
+  height: 32px;
+  opacity: 0.8;
+  object-fit: contain;
+}
+
+.global-footer {
+  text-align: center;
+  padding: 40px 20px 24px;
+  color: var(--text-tertiary);
+  font-size: 13px;
+  border-top: 1px solid var(--border-subtle);
+  margin-top: auto;
+}
+
+.global-footer a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.global-footer a:hover {
+  color: var(--text-accent);
+}

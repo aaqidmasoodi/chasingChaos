@@ -15,7 +15,20 @@ export default function RootLayout({ children }) {
       <body>
         <div className="app-layout">
           <Sidebar />
-          <main className="main-content">{children}</main>
+          <main className="main-content">
+            {children}
+            <footer className="global-footer">
+              Designed & Developed by{" "}
+              <a
+                href="https://aaqidmasoodi.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Aaqid Masoodi
+              </a>{" "}
+              for Poolbeg Creations
+            </footer>
+          </main>
           <MobileNav />
         </div>
         <ToastContainer />

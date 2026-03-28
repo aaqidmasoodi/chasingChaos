@@ -7,6 +7,7 @@ import Link from "next/link";
 import CharacterAvatar from "@/components/CharacterAvatar";
 import EditableText from "@/components/EditableText";
 import EditableList from "@/components/EditableList";
+import LoadingSpinner from "@/components/LoadingSpinner";
 import { showToast } from "@/components/Toast";
 
 export default function CharacterDetailPage({ params }) {
@@ -74,7 +75,7 @@ export default function CharacterDetailPage({ params }) {
   if (loading) {
     return (
       <div className="page-container">
-        <p style={{ color: "var(--text-tertiary)" }}>Loading...</p>
+        <LoadingSpinner />
       </div>
     );
   }
