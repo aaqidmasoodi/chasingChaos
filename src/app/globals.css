@@ -1169,12 +1169,28 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .global-footer {
+  position: fixed;
+  bottom: 0;
+  left: var(--sidebar-width);
+  right: 0;
   text-align: center;
-  padding: 40px 20px 24px;
+  padding: 12px 20px;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   color: var(--text-tertiary);
   font-size: 13px;
   border-top: 1px solid var(--border-subtle);
-  margin-top: auto;
+  z-index: 90;
+}
+
+@media (max-width: 768px) {
+  .global-footer {
+    left: 0;
+    bottom: 72px;
+    padding: 8px 12px;
+    font-size: 11px;
+  }
 }
 
 .global-footer a {
@@ -1186,3 +1202,4 @@ h1, h2, h3, h4, h5, h6 {
 .global-footer a:hover {
   color: var(--text-accent);
 }
+
