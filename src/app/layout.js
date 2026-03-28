@@ -1,6 +1,7 @@
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
 import MobileNav from "@/components/MobileNav";
+import ToastContainer from "@/components/Toast";
 
 export const metadata = {
   title: "Chasing Chaos, Series Bible",
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
           <main className="main-content">{children}</main>
           <MobileNav />
         </div>
+        <ToastContainer />
       </body>
     </html>
   );

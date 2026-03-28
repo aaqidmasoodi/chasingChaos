@@ -2,23 +2,33 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { characters } from "@/data/characters";
-import { episodes } from "@/data/episodes";
+import { useState, useEffect } from "react";
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const [characters, setCharacters] = useState([]);
+  const [episodes, setEpisodes] = useState([]);
+
+  useEffect(() => {
+    fetch("/api/characters")
+      .then((r) => r.json())
+      .then(setCharacters)
+      .catch(() => {});
+    fetch("/api/episodes")
+      .then((r) => r.json())
+      .then(setEpisodes)
+      .catch(() => {});
+  }, [pathname]);
 
   return (
     <aside className="sidebar">
       <div className="sidebar-brand">
-        <Link href="/" style={{ textDecoration: "none" }}>
+        <Link href="/" style={{ textDecoration: "none", color: "inherit" }}>
           <h1>Chasing Chaos</h1>
           <p>Series Bible, First Draft</p>
         </Link>
       </div>
-
       <nav className="sidebar-nav">
-        {/* Characters Section */}
         <div className="sidebar-section">
           <div className="sidebar-section-title">Characters</div>
           <Link
@@ -29,20 +39,18 @@ export default function Sidebar() {
           >
             All Characters
           </Link>
-          {characters.map((char) => (
+          {characters.map((c) => (
             <Link
-              key={char.slug}
-              href={`/characters/${char.slug}`}
+              key={c.slug}
+              href={`/characters/${c.slug}`}
               className={`sidebar-link ${
-                pathname === `/characters/${char.slug}` ? "active" : ""
+                pathname === `/characters/${c.slug}` ? "active" : ""
               }`}
             >
-              {char.name}
+              {c.name}
             </Link>
           ))}
         </div>
-
-        {/* Episodes Section */}
         <div className="sidebar-section">
           <div className="sidebar-section-title">Episodes</div>
           <Link
@@ -53,20 +61,18 @@ export default function Sidebar() {
           >
             All Episodes
           </Link>
-          {episodes.map((ep) => (
+          {episodes.map((e) => (
             <Link
-              key={ep.number}
-              href={`/episodes/${ep.number}`}
+              key={e.number}
+              href={`/episodes/${e.number}`}
               className={`sidebar-link ${
-                pathname === `/episodes/${ep.number}` ? "active" : ""
+                pathname === `/episodes/${e.number}` ? "active" : ""
               }`}
             >
-              Ep {ep.number}: {ep.title}
+              Ep {e.number}: {e.title}
             </Link>
           ))}
         </div>
-
-        {/* Production Section */}
         <div className="sidebar-section">
           <div className="sidebar-section-title">Production</div>
           <Link
@@ -75,13 +81,12 @@ export default function Sidebar() {
               pathname === "/production" ? "active" : ""
             }`}
           >
-            Framework & Intentions
+            Framework
           </Link>
         </div>
       </nav>
-
       <div className="sidebar-footer">
-        6 Episodes · 45 min each
+        6 episodes · 45 min each
       </div>
     </aside>
   );

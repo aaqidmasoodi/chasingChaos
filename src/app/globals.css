@@ -52,6 +52,26 @@ html {
   scroll-behavior: smooth;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+  border-left: 1px solid var(--border-subtle);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  border: 2px solid var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
 body {
   background: var(--bg-primary);
   color: var(--text-primary);
@@ -890,6 +910,185 @@ h1, h2, h3, h4, h5, h6 {
 .stagger-4 { animation-delay: 0.2s; }
 .stagger-5 { animation-delay: 0.25s; }
 .stagger-6 { animation-delay: 0.3s; }
+
+/* ============================================
+   INLINE EDITING
+   ============================================ */
+
+.editable-text {
+  cursor: text;
+  border-radius: 4px;
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.editable-text:hover {
+  background: rgba(212, 165, 116, 0.06);
+  outline: 1px dashed rgba(212, 165, 116, 0.2);
+  outline-offset: 2px;
+}
+
+.editable-text.saving {
+  opacity: 0.6;
+}
+
+.page-title.editable-text,
+.page-title .editable-text {
+  -webkit-text-fill-color: unset;
+  background: none;
+  color: var(--text-accent);
+}
+
+.editable-list {
+  width: 100%;
+}
+
+.editable-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  position: relative;
+}
+
+.editable-list-delete {
+  background: none;
+  border: none;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  opacity: 0;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.editable-list-item:hover .editable-list-delete {
+  opacity: 1;
+}
+
+.editable-list-delete:hover {
+  color: var(--accent-red);
+  background: rgba(196, 92, 59, 0.1);
+}
+
+.editable-list-add {
+  background: none;
+  border: 1px dashed var(--border-medium);
+  color: var(--text-tertiary);
+  cursor: pointer;
+  font-size: 13px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  margin-top: 12px;
+  transition: all var(--transition-fast);
+  width: 100%;
+  text-align: left;
+}
+
+.editable-list-add:hover {
+  color: var(--text-accent);
+  border-color: var(--border-accent);
+  background: rgba(212, 165, 116, 0.05);
+}
+
+/* Action Buttons */
+
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent-amber-glow);
+  border: 1px solid var(--border-accent);
+  color: var(--text-accent);
+  cursor: pointer;
+  font-size: 13px;
+  font-family: var(--font-body);
+  padding: 8px 18px;
+  border-radius: 100px;
+  transition: all var(--transition-fast);
+}
+
+.action-btn:hover {
+  background: rgba(212, 165, 116, 0.25);
+  transform: translateY(-1px);
+}
+
+.action-btn-danger {
+  background: rgba(196, 92, 59, 0.1);
+  border-color: rgba(196, 92, 59, 0.3);
+  color: var(--accent-red);
+}
+
+.action-btn-danger:hover {
+  background: rgba(196, 92, 59, 0.25);
+}
+
+.card-delete-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(196, 92, 59, 0.15);
+  border: none;
+  color: var(--accent-red);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: all var(--transition-fast);
+  font-size: 14px;
+  z-index: 2;
+}
+
+.character-card:hover .card-delete-btn,
+.episode-card:hover .card-delete-btn {
+  opacity: 1;
+}
+
+.card-delete-btn:hover {
+  background: rgba(196, 92, 59, 0.35);
+  transform: scale(1.1);
+}
+
+/* ============================================
+   TOAST NOTIFICATIONS
+   ============================================ */
+
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.toast {
+  background: rgba(20, 20, 20, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-medium);
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 13px;
+  color: var(--text-primary);
+  animation: fadeInUp 0.3s var(--ease-out);
+}
+
+.toast-success {
+  border-color: rgba(107, 142, 123, 0.4);
+  color: #6B8E7B;
+}
+
+.toast-error {
+  border-color: rgba(196, 92, 59, 0.4);
+  color: var(--accent-red);
+}
 
 /* ============================================
    RESPONSIVE
